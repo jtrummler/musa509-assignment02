@@ -210,12 +210,22 @@ The 0.5 point metric is an arbitrary way to analyze wheelchair boarding accessib
 
 6.  What are the _top five_ neighborhoods according to your accessibility metric?
 
-"neighborhood_name"	"accessibility_rating"	"num_bus_stops_accessible"	"num_bus_stops_inaccessible"
-"NEWBOLD"	86.2	45	4
-"WASHINGTON_SQUARE"	85.9	72	3
-"SPRING_GARDEN"	76.3	47	2
-"HAWTHORNE"	76.0	30	0
-"FRANCISVILLE"	74.9	41	0
+| neighborhood_name | accessibility_rating | num_bus_stops_accessible | num_bus_stops_inaccessible |
+| --------------- | --------------- | --------------- | --------------- |
+| NEWBOLD | 86.2 | 45 | 4 |
+| WASHINGTON_SQUARE | 85.9 | 72 | 3 |
+| SPRING_GARDEN | 76.3 | 47 | 2 |
+| HAWTHORNE | 76.0 | 30 | 0 |
+| FRANCISVILLE| 74.9 | 41 | 0 |
+
+
+
+""	""	""	""
+""			4
+""		72	3
+""	76.3	47	2
+""	76.0	30	0
+""	74.9	41	0
 
 7.  What are the _bottom five_ neighborhoods according to your accessibility metric?
 
