@@ -216,28 +216,17 @@ The 0.5 point metric is an arbitrary way to analyze wheelchair boarding accessib
 | WASHINGTON_SQUARE | 85.9 | 72 | 3 |
 | SPRING_GARDEN | 76.3 | 47 | 2 |
 | HAWTHORNE | 76.0 | 30 | 0 |
-| FRANCISVILLE| 74.9 | 41 | 0 |
-
-
-
-""	""	""	""
-""			4
-""		72	3
-""	76.3	47	2
-""	76.0	30	0
-""	74.9	41	0
+| FRANCISVILLE | 74.9 | 41 | 0 |
 
 7.  What are the _bottom five_ neighborhoods according to your accessibility metric?
 
-    **Both #6 and #7 should have the structure:**
-    ```sql
-    (
-      neighborhood_name text,  -- The name of the neighborhood
-      accessibility_metric ...,  -- Your accessibility metric value
-      num_bus_stops_accessible integer,
-      num_bus_stops_inaccessible integer
-    )
-    ```
+| neighborhood_name | accessibility_rating | num_bus_stops_accessible | num_bus_stops_inaccessible |
+| --------------- | --------------- | --------------- | --------------- |
+| WEST_TORRESDALE | 1.8 | 1 | 0 |
+| NAVY_YARD | 1.9 | 14 | 0 |
+| AIRPORT | 2.1 | 20 | 0 |
+| INDUSTRIAL | 2.7 | 29 | 2 |
+| CRESTMONT_FARMS | 3.0 | 1 | 0 |
 
 8.  With a query, find out how many census block groups Penn's main campus fully contains. Discuss which dataset you chose for defining Penn's campus.
 
