@@ -39,5 +39,11 @@ set geog = st_makepoint(stop_lon, stop_lat)::geography;
 
 -- Create an index on the geog column.
 create index if not exists septa_bus_stops__geog__idx
-on septa_bus_stops using gist
-(geog);
+on septa_bus_stops using gist(geog);
+
+-- Create a new column in census.population_2020 to remove "1500000US" string from geoid
+alter table census.population_2020
+add column id character varying(12);
+
+update census.population_2020
+set id = substring(geoid, 11);

@@ -1,16 +1,56 @@
+WITH shapes AS (
+    SELECT
+        shape_id,
+        ST_MAKELINE(
+            ST_MAKEPOINT(shape_pt_lon, shape_pt_lat)
+            ORDER BY shape_pt_sequence
+        ) AS shape_geog,
+        ST_LENGTH(
+            ST_MAKELINE(
+                ST_MAKEPOINT(shape_pt_lon, shape_pt_lat)
+                ORDER BY shape_pt_sequence
+            )::geography
+        ) AS shape_length
+    FROM
+        septa.bus_shapes
+    GROUP BY
+        shape_id
+),
+
+trips AS (
+    SELECT
+        route_id,
+        trip_headsign,
+        shape_id
+    FROM
+        septa.bus_trips
+    GROUP BY
+        route_id,
+        trip_headsign,
+        shape_id
+)
+
 SELECT
-    r.route_short_name,
-    t.trip_headsign,
-    ST_LENGTH(ST_MAKELINE(ST_MAKEPOINT(s.shape_pt_lon, s.shape_pt_lat) ORDER BY s.shape_pt_sequence)) AS shape_length,
-    ST_MAKELINE(ST_MAKEPOINT(s.shape_pt_lon, s.shape_pt_lat) ORDER BY s.shape_pt_sequence) AS shape_geog
+    br.route_short_name,
+    bt.trip_headsign,
+    s.shape_geog,
+    s.shape_length
 FROM
-    septa.bus_shapes AS s
-JOIN
-    septa.bus_trips AS t ON s.shape_id = t.shape_id
-JOIN
-    septa.bus_routes AS r ON t.route_id = r.route_id
+    septa.bus_routes AS br
+INNER JOIN
+    trips AS bt
+    ON
+        br.route_id = bt.route_id
+INNER JOIN
+    shapes AS s
+    ON
+        bt.shape_id = s.shape_id
 GROUP BY
-    r.route_short_name, t.trip_headsign
+    br.route_short_name,
+    bt.trip_headsign,
+    s.shape_geog,
+    s.shape_length
 ORDER BY
-    shape_length DESC
-LIMIT 2;
+    s.shape_length DESC
+LIMIT
+    2;

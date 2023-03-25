@@ -195,11 +195,18 @@ There are several datasets that are prescribed for you to use in this part. Your
 
 5.  Rate neighborhoods by their bus stop accessibility for wheelchairs. Use Azavea's neighborhood dataset from OpenDataPhilly along with an appropriate dataset from the Septa GTFS bus feed. Use the [GTFS documentation](https://gtfs.org/reference/static/) for help. Use some creativity in the metric you devise in rating neighborhoods.
 
-    _NOTE: There is no automated test for this question, as there's no one right answer. With urban data analysis, this is frequently the case._
+My accessibility metric assigns the following point value to each bus stop:
 
-    Discuss your accessibility metric and how you arrived at it below:
+    If wheelchair_boarding = 0 (unable to board with wheelchair), it receives 0 points (entirely inaccessible).  
+    If wheelchair_boarding = 1 (able to board with wheelchair), it receives 1 point (entirely accessible).  
+    If wheelchair_boarding = 2 (stop nearby has wheelchair boarding), it receives 0.5 point (inaccessible stop, with local accessible option).  
 
-    **Description:**
+These values are calculated per stop within each neighborhood, and are divided by the area in sq km of each neighborhood.
+
+Limitations to this method:
+
+    Neighborhoods are not disadvantaged by inaccessibility as it does not subtract from their score, thus neighborhoods with several inaccessible stops can mediate their score by havung several accessible stops. This ultimately may result in a metric that speaks to greater network accessibility and general density of stops per areal unit of a neighborhood.  
+    The 0.5 point metric is an arbitrary way to analyze wheelchair boarding accessibility, and does not guarantee the nearby stop with wheelchair boarding is within the neighborhood.  
 
 6.  What are the _top five_ neighborhoods according to your accessibility metric?
 
