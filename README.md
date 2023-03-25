@@ -197,18 +197,25 @@ There are several datasets that are prescribed for you to use in this part. Your
 
 My accessibility metric assigns the following point value to each bus stop:
 
-    If wheelchair_boarding = 0 (unable to board with wheelchair), it receives 0 points (entirely inaccessible).  
-    If wheelchair_boarding = 1 (able to board with wheelchair), it receives 1 point (entirely accessible).  
-    If wheelchair_boarding = 2 (stop nearby has wheelchair boarding), it receives 0.5 point (inaccessible stop, with local accessible option).  
+If wheelchair_boarding = 0 (unable to board with wheelchair), it receives 0 points (entirely inaccessible).  
+If wheelchair_boarding = 1 (able to board with wheelchair), it receives 1 point (entirely accessible).  
+If wheelchair_boarding = 2 (stop nearby has wheelchair boarding), it receives 0.5 point (inaccessible stop, with local accessible option).  
 
 These values are calculated per stop within each neighborhood, and are divided by the area in sq km of each neighborhood.
 
 Limitations to this method:
 
-    Neighborhoods are not disadvantaged by inaccessibility as it does not subtract from their score, thus neighborhoods with several inaccessible stops can mediate their score by havung several accessible stops. This ultimately may result in a metric that speaks to greater network accessibility and general density of stops per areal unit of a neighborhood.  
-    The 0.5 point metric is an arbitrary way to analyze wheelchair boarding accessibility, and does not guarantee the nearby stop with wheelchair boarding is within the neighborhood.  
+Neighborhoods are not disadvantaged by inaccessibility as it does not subtract from their score, thus neighborhoods with several inaccessible stops can mediate their score by havung several accessible stops. This ultimately may result in a metric that speaks to greater network accessibility and general density of stops per areal unit of a neighborhood.  
+The 0.5 point metric is an arbitrary way to analyze wheelchair boarding accessibility, and does not guarantee the nearby stop with wheelchair boarding is within the neighborhood.  
 
 6.  What are the _top five_ neighborhoods according to your accessibility metric?
+
+"neighborhood_name"	"accessibility_rating"	"num_bus_stops_accessible"	"num_bus_stops_inaccessible"
+"NEWBOLD"	86.2	45	4
+"WASHINGTON_SQUARE"	85.9	72	3
+"SPRING_GARDEN"	76.3	47	2
+"HAWTHORNE"	76.0	30	0
+"FRANCISVILLE"	74.9	41	0
 
 7.  What are the _bottom five_ neighborhoods according to your accessibility metric?
 
