@@ -144,6 +144,17 @@ There are several datasets that are prescribed for you to use in this part. Your
 
 1.  Which **eight** bus stop have the largest population within 800 meters? As a rough estimation, consider any block group that intersects the buffer as being part of the 800 meter buffer.
 
+| "stop_name" |	"estimated_pop_800m" | "geog" |
+| --------------- | --------------- | --------------- | --------------- |
+|"Lombard St & 18th St"	|57936	|"0101000020E610000044A51133FBCA52C01B2FDD2406F94340"
+|"Rittenhouse Sq & 18th St "	|57571	|"0101000020E61000003C2F151BF3CA52C07E74EACA67F94340"
+|"Snyder Av & 9th St "	|57412	|"0101000020E61000001E1840F850CA52C0BE50C07630F64340"
+|"19th St & Lombard St "	|57019	|"0101000020E6100000D68C0C7217CB52C0DBF813950DF94340"
+|"Lombard St & 19th St"	|57019	|"0101000020E61000004968CBB914CB52C0E2E995B20CF94340"
+|"Locust St & 16th St "	|56309	|"0101000020E6100000E068C70DBFCA52C00B992B836AF94340"
+|"16th St & Locust St "	|56309	|"0101000020E6100000B2666490BBCA52C0410E4A9869F94340"
+|"South St & 19th St"	|55789	|"0101000020E61000005DA626C11BCB52C065A54929E8F84340"
+
 2.  Which **eight** bus stops have the smallest population above 500 people _inside of Philadelphia_ within 800 meters of the stop (Philadelphia county block groups have a geoid prefix of `42101` -- that's `42` for the state of PA, and `101` for Philadelphia county)?
 
     **The queries to #1 & #2 should generate results with a single row, with the following structure:**
