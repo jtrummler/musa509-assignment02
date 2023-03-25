@@ -203,10 +203,7 @@ If wheelchair_boarding = 2 (stop nearby has wheelchair boarding), it receives 0.
 
 These values are calculated per stop within each neighborhood, and are divided by the area in sq km of each neighborhood.
 
-Limitations to this method:
-
-Neighborhoods are not disadvantaged by inaccessibility as it does not subtract from their score, thus neighborhoods with several inaccessible stops can mediate their score by havung several accessible stops. This ultimately may result in a metric that speaks to greater network accessibility and general density of stops per areal unit of a neighborhood.  
-The 0.5 point metric is an arbitrary way to analyze wheelchair boarding accessibility, and does not guarantee the nearby stop with wheelchair boarding is within the neighborhood.  
+There are a few limitations to this method. First, neighborhoods are not disadvantaged by inaccessibility as it does not subtract from their score, thus neighborhoods with several inaccessible stops can mediate their score by havung several accessible stops. This ultimately may result in a metric that speaks to greater network accessibility and general density of stops per areal unit of a neighborhood. Additionally, the 0.5 point metric for local accessible stops is an arbitrary measure to analyze wheelchair boarding accessibility, and does not guarantee the nearby stop with wheelchair boarding is within the neighborhood.  
 
 6.  What are the _top five_ neighborhoods according to your accessibility metric?
 
