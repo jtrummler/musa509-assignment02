@@ -229,14 +229,8 @@ There are a few limitations to this method. First, neighborhoods are not disadva
 | ------------------ |
 | 37 |
 
-    **Structure (should be a single value):**
-    ```sql
-    (
-        count_block_groups integer
-    )
-    ```
 
-    **Discussion:**
+    Discussion: I chose to use "University City" from Azavea's neighborhoods. I mapped them in pgAdmin and it seemed to cover all of campus with only a few additional surrounding cross streets.
 
 9. With a query involving PWD parcels and census block groups, find the `geo_id` of the block group that contains Meyerson Hall. `ST_MakePoint()` and functions like that are not allowed.
 
