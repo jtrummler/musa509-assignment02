@@ -158,15 +158,16 @@ There are several datasets that are prescribed for you to use in this part. Your
 
 2.  Which **eight** bus stops have the smallest population above 500 people _inside of Philadelphia_ within 800 meters of the stop (Philadelphia county block groups have a geoid prefix of `42101` -- that's `42` for the state of PA, and `101` for Philadelphia county)?
 
-    **The queries to #1 & #2 should generate results with a single row, with the following structure:**
-
-    ```sql
-    (
-        stop_name text, -- The name of the station
-        estimated_pop_800m integer, -- The population within 800 meters
-        geog geography -- The geography of the bus stop
-    )
-    ```
+| stop_name | estimated_pop_800m | geog |
+| --- | --- | --- |
+| Delaware Av & Venango St | 593 | 0101000020E6100000E0BDA3C684C552C02EE3A6069AFD4340 |
+| Delaware Av & Tioga St | 593 | 0101000020E610000023A30392B0C552C0A0504F1F81FD4340 |
+| Delaware Av & Castor Av | 593 | 0101000020E61000002AE3DF675CC552C07EC4AF58C3FD4340 |
+| Northwestern Av & Stenton Av | 655 | 0101000020E61000006021736550CE52C05858703FE00B4440 |
+| Stenton Av & Northwestern Av | 655 | 0101000020E6100000F6ECB94C4DCE52C09D9CA1B8E30B4440 |
+| Bethlehem Pk & Chesney Ln | 655 | 0101000020E6100000B8E9CF7EA4CD52C0151DC9E53F0C4440 |
+| Bethlehem Pk & Chesney Ln | 655 | 0101000020E6100000211E8997A7CD52C094F77134470C4440 |
+| Delaware Av & Wheatsheaf Ln | 684 | 0101000020E610000072FBE59315C552C07C0A80F10CFE4340 |
 
 3.  Using the Philadelphia Water Department Stormwater Billing Parcels dataset, pair each parcel with its closest bus stop. The final result should give the parcel address, bus stop name, and distance apart in meters. Order by distance (largest on top).
 
@@ -185,25 +186,10 @@ There are several datasets that are prescribed for you to use in this part. Your
 
 4.  Using the `bus_shapes`, `bus_routes`, and `bus_trips` tables from GTFS bus feed, find the **two** routes with the longest trips.
 
-    _Your query should run in under two minutes._
-
-    >_**HINT**: The `ST_MakeLine` function is useful here. You can see an example of how you could use it at [this MobilityData walkthrough](https://docs.mobilitydb.com/MobilityDB-workshop/master/ch04.html#:~:text=INSERT%20INTO%20shape_geoms) on using GTFS data. If you find other good examples, please share them in Slack._
-
-    >_**HINT**: Use the query planner (`EXPLAIN`) to see if there might be opportunities to speed up your query with indexes. For reference, I got this query to run in about 15 seconds._
-
-    >_**HINT**: The `row_number` window function could also be useful here. You can read more about window functions [in the PostgreSQL documentation](https://www.postgresql.org/docs/9.1/tutorial-window.html). That documentation page uses the `rank` function, which is very similar to `row_number`. For more info about window functions you can check out:_
-    >*   📑 [_An Easy Guide to Advanced SQL Window Functions_](https://towardsdatascience.com/a-guide-to-advanced-sql-window-functions-f63f2642cbf9) in Towards Data Science, by Julia Kho
-    >*   🎥 [_SQL Window Functions for Data Scientists_](https://www.youtube.com/watch?v=e-EL-6Vnkbg) (and a [follow up](https://www.youtube.com/watch?v=W_NBnkLLh7M) with examples) on YouTube, by Emma Ding
-
-    **Structure:**
-    ```sql
-    (
-        route_short_name text,  -- The short name of the route
-        trip_headsign text,  -- Headsign of the trip
-        shape_geog geography,  -- The shape of the trip
-        shape_length double precision  -- Length of the trip in meters
-    )
-    ```
+| route_short_name | trip_headsign | shape_geog | length |
+| --- | --- | --- | --- |
+| 130 | Bucks County Community College | line | 46505.40383430579 |
+| 128 | Oxford Valley Mall | line | 43659.17731871104 |
 
 5.  Rate neighborhoods by their bus stop accessibility for wheelchairs. Use Azavea's neighborhood dataset from OpenDataPhilly along with an appropriate dataset from the Septa GTFS bus feed. Use the [GTFS documentation](https://gtfs.org/reference/static/) for help. Use some creativity in the metric you devise in rating neighborhoods.
 
@@ -238,6 +224,10 @@ There are a few limitations to this method. First, neighborhoods are not disadva
 | CRESTMONT_FARMS | 3.0 | 1 | 0 |
 
 8.  With a query, find out how many census block groups Penn's main campus fully contains. Discuss which dataset you chose for defining Penn's campus.
+
+| count_block_groups |
+| ------------------ |
+| 37 |
 
     **Structure (should be a single value):**
     ```sql

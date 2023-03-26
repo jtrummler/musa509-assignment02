@@ -42,8 +42,23 @@ create index if not exists septa_bus_stops__geog__idx
 on septa_bus_stops using gist(geog);
 
 -- Create a new column in census.population_2020 to remove "1500000US" string from geoid
-alter table census.population_2020
-add column id character varying(12);
+alter table census.population_2020 add column id text;
+update census.population_2020 set id = replace(geoid, '1500000US', '');
+alter table census.population_2020 drop column geoid;
+alter table census.population_2020 rename column id to geoid;
 
-update census.population_2020
-set id = substring(geoid, 11);
+-- Update geogprahy column to 4326 in census.blockgroups_2020
+alter table census.blockgroups_2020 add column newgeog geography(geometry, 4326);
+update census.blockgroups_2020 set newgeog = st_transform(geog::geometry, 4326)::geography;
+alter table census.blockgroups_2020 drop column geog;
+alter table census.blockgroups_2020 rename column newgeog to geog;
+
+-- Update geogprahy column to 4326 in phl.pwd_parcels
+alter table phl.pwd_parcels add column newgeog geography(geometry, 4326);
+update phl.pwd_parcels set newgeog = st_transform(geog::geometry, 4326)::geography;
+alter table phl.pwd_parcels drop column geog;
+alter table phl.pwd_parcels rename column newgeog to geog;
+
+-- Create an index for septa.bus_stops
+create index if not exists septa_bus_stops__geog__idx
+on septa_bus_stops using gist(geog);
