@@ -33,7 +33,7 @@ trips AS (
 SELECT
     br.route_short_name,
     bt.trip_headsign,
-    s.shape_geog,
+    s.shape_geog::geography,
     s.shape_length
 FROM
     septa.bus_routes AS br
@@ -48,7 +48,7 @@ INNER JOIN
 GROUP BY
     br.route_short_name,
     bt.trip_headsign,
-    s.shape_geog,
+    s.shape_geog::geography,
     s.shape_length
 ORDER BY
     s.shape_length DESC

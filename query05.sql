@@ -29,7 +29,7 @@ neighborhood_ratings AS (
         sc.neighborhood_name AS neighborhood_name,
         sc.num_bus_stops_inaccessible,
         sc.num_bus_stops_accessible,
-        ROUND((sc.one_count::numeric * 1 + sc.two_count::numeric * 0.5) / na.area_sq_km::numeric, 1) AS accessibility_rating
+        ROUND((sc.one_count::numeric * 1 + sc.two_count::numeric * 0.5) / na.area_sq_km::numeric, 1) AS accessibility_metric
     FROM
         neighborhood_areas AS na
     INNER JOIN
@@ -39,11 +39,11 @@ neighborhood_ratings AS (
 )
 
 SELECT
-    neighborhood_name,
-    accessibility_rating,
+    neighborhood_name::text,
+    accessibility_metric,
     num_bus_stops_accessible,
     num_bus_stops_inaccessible
 FROM
     neighborhood_ratings
 ORDER BY
-    accessibility_rating DESC;
+    accessibility_metric DESC;

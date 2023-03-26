@@ -62,3 +62,9 @@ alter table phl.pwd_parcels rename column newgeog to geog;
 -- Create an index for septa.bus_stops
 create index if not exists septa_bus_stops__geog__idx
 on septa_bus_stops using gist(geog);
+
+-- Create geography column for septa.rail_stops
+ALTER TABLE septa.rail_stops
+ADD COLUMN geog geography(Point, 4326);
+UPDATE septa.rail_stops
+SET geog = ST_SetSRID(ST_MakePoint(stop_lon, stop_lat), 4326);

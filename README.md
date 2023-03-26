@@ -230,30 +230,21 @@ There are a few limitations to this method. First, neighborhoods are not disadva
 | 37 |
 
 
-    Discussion: I chose to use "University City" from Azavea's neighborhoods. I mapped them in pgAdmin and it seemed to cover all of campus with only a few additional surrounding cross streets.
+Discussion: I chose to use "University City" from Azavea's neighborhoods. I mapped them in pgAdmin and it seemed to cover all of campus with only a few additional surrounding cross streets.
 
 9. With a query involving PWD parcels and census block groups, find the `geo_id` of the block group that contains Meyerson Hall. `ST_MakePoint()` and functions like that are not allowed.
 
-    **Structure (should be a single value):**
-    ```sql
-    (
-        geo_id text
-    )
-    ```
+| geo_id |
+| ------ |
+| 421010369022 |
 
 10. You're tasked with giving more contextual information to rail stops to fill the `stop_desc` field in a GTFS feed. Using any of the data sets above, PostGIS functions (e.g., `ST_Distance`, `ST_Azimuth`, etc.), and PostgreSQL string functions, build a description (alias as `stop_desc`) for each stop. Feel free to supplement with other datasets (must provide link to data used so it's reproducible), and other methods of describing the relationships. SQL's `CASE` statements may be helpful for some operations.
 
-    **Structure:**
-    ```sql
-    (
-        stop_id integer,
-        stop_name text,
-        stop_desc text,
-        stop_lon double precision,
-        stop_lat double precision
-    )
-    ```
+| stop_id | stop_name            | stop_desc                        | stop_lon    | stop_lat    |
+| ------- | --------------------| ---------------------------------| ----------- | ----------- |
+| 90001   | Cynwyd              | 6351 meters from my apartment   | -75.2316667 | 40.0066667 |
+| 90002   | Bala                | 5665 meters from my apartment   | -75.2277778 | 40.0011111 |
+| 90003   | Wynnefield Avenue   | 4429 meters from my apartment   | -75.2255556 | 39.99      |
+| 90004   | Gray 30th Street    | 2428 meters from my apartment   | -75.1816667 | 39.9566667 |
+| 90005   | Suburban Station    | 3564 meters from my apartment   | -75.1677778 | 39.9538889 |
 
-   As an example, your `stop_desc` for a station stop may be something like "37 meters NE of 1234 Market St" (that's only an example, feel free to be creative, silly, descriptive, etc.)
-
-   >**Tip when experimenting:** Use subqueries to limit your query to just a few rows to keep query times faster. Once your query is giving you answers you want, scale it up. E.g., instead of `FROM tablename`, use `FROM (SELECT * FROM tablename limit 10) as t`.
