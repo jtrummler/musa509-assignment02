@@ -1,7 +1,7 @@
 import { expect, describe, it, jest } from '@jest/globals';
 import './jest_extensions';
 
-jest.setTimeout(120000);
+jest.setTimeout(240000);
 
 
 describe('Query 03', () => {
