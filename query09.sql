@@ -7,7 +7,7 @@ WITH mey AS (
 bg AS (
     SELECT *
     FROM census.blockgroups_2020
-    WHERE statefp = '42' AND countyfp = '101' -- Pennsylvania state code and Philadelphia county code
+    WHERE statefp = '42' AND countyfp = '101'
 )
 
 SELECT bg.geoid::text AS geo_id
