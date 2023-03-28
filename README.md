@@ -171,18 +171,13 @@ There are several datasets that are prescribed for you to use in this part. Your
 
 3.  Using the Philadelphia Water Department Stormwater Billing Parcels dataset, pair each parcel with its closest bus stop. The final result should give the parcel address, bus stop name, and distance apart in meters. Order by distance (largest on top).
 
-    _Your query should run in under two minutes._
-
-    >_**HINT**: This is a [nearest neighbor](https://postgis.net/workshops/postgis-intro/knn.html) problem.
-
-    **Structure:**
-    ```sql
-    (
-        address text,  -- The address of the parcel
-        stop_name text,  -- The name of the bus stop
-        distance double precision  -- The distance apart in meters
-    )
-    ```
+| parcel_address | parcel_geog | stop_name | stop_geog | distance |
+| -------------- | ----------- | --------- | --------- | -------- |
+| 170 SPRING LN | point | Ridge Av & Ivins Rd |	point |	1658.81605058 |
+| 170 SPRING LN | point | Ridge Av & Ivins Rd |	point |	1620.31592069 |
+| 170 SPRING LN | point | Ridge Av & Ivins Rd |	point |	1611.02192751 |
+| 170 SPRING LN | point | Ridge Av & Ivins Rd |	point |	1490.10161478 |
+| 170 SPRING LN | point | Ridge Av & Ivins Rd |	point |	1418.41679523 |
 
 4.  Using the `bus_shapes`, `bus_routes`, and `bus_trips` tables from GTFS bus feed, find the **two** routes with the longest trips.
 
